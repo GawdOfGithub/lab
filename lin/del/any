@@ -1,0 +1,97 @@
+#include <iostream>
+using namespace std;
+
+// Node structure for the linked list
+struct Node {
+    int data;
+    Node* next;
+};
+
+// Function to insert an element at the end of the linked list
+Node* insertAtEnd(Node* head, int data) {
+    Node* newNode = new Node();
+    newNode->data = data;
+    newNode->next = nullptr;
+
+    if (head == nullptr) {
+        // If the list is empty, the new node becomes the head
+        head = newNode;
+    } else {
+        // Traverse to the end and append the new node
+        Node* current = head;
+        while (current->next != nullptr) {
+            current = current->next;
+        }
+        current->next = newNode;
+    }
+
+    return head;
+}
+
+// Function to delete an element at any position in the linked list
+Node* deleteAtPosition(Node* head, int position) {
+    if (head == nullptr) {
+        cout << "Linked list is empty. Cannot delete." << endl;
+        return nullptr;
+    }
+
+    Node* temp = head;
+    if (position == 0) {
+        // Deleting at the beginning
+        head = head->next;
+        delete temp;
+    } else {
+        // Deleting at a specific position
+        for (int i = 0; temp != nullptr && i < position - 1; ++i) {
+            temp = temp->next;
+        }
+
+        if (temp == nullptr || temp->next == nullptr) {
+            cout << "Position out of bounds. Cannot delete." << endl;
+        } else {
+            Node* nextNode = temp->next->next;
+            delete temp->next;
+            temp->next = nextNode;
+        }
+    }
+
+    return head;
+}
+
+// Function to display the linked list
+void displayList(Node* head) {
+    Node* current = head;
+    while (current != nullptr) {
+        cout << current->data << " ";
+        current = current->next;
+    }
+    cout << endl;
+}
+
+int main() {
+    // Creating an empty linked list
+    Node* head = nullptr;
+
+    // Inserting elements at the end
+    head = insertAtEnd(head, 5);
+    head = insertAtEnd(head, 10);
+    head = insertAtEnd(head, 15);
+    head = insertAtEnd(head, 20);
+
+    // Displaying the linked list
+    cout << "Linked list before deletion: ";
+    displayList(head);
+
+    int positionToDelete;
+    cout << "Enter position to delete element: ";
+    cin >> positionToDelete;
+
+    // Deleting the element at the specified position
+    head = deleteAtPosition(head, positionToDelete);
+
+    // Displaying the linked list after deletion
+    cout << "Linked list after deletion: ";
+    displayList(head);
+
+    return 0;
+}
