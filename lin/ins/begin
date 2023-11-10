@@ -1,0 +1,42 @@
+#include <iostream>
+using namespace std;
+
+// Node structure for the linked list
+struct Node {
+    int data;
+    Node* next;
+};
+
+// Function to insert an element at the beginning of the linked list
+Node* insertAtBeginning(Node* head, int data) {
+    Node* newNode = new Node();
+    newNode->data = data;
+    newNode->next = head;
+    return newNode;
+}
+
+// Function to display the linked list
+void displayList(Node* head) {
+    Node* current = head;
+    while (current != nullptr) {
+        cout << current->data << " ";
+        current = current->next;
+    }
+    cout << endl;
+}
+
+int main() {
+    // Creating an empty linked list
+    Node* head = nullptr;
+
+    // Inserting elements at the beginning
+    head = insertAtBeginning(head, 5);
+    head = insertAtBeginning(head, 10);
+    head = insertAtBeginning(head, 15);
+
+    // Displaying the linked list
+    cout << "Linked list after inserting at the beginning: ";
+    displayList(head);
+
+    return 0;
+}
