@@ -1,0 +1,49 @@
+#include <iostream>
+using namespace std;
+
+// Define a structure for Employee details
+struct Employee {
+    string name;
+    int employeeID;
+    string department;
+    float salary;
+};
+
+int main() {
+    int n; // Number of employees
+    cout << "Enter the number of employees: ";
+    cin >> n;
+
+    // Create an array of 'Employee' structures
+    Employee employees[n];
+
+    // Input details for each employee
+    for (int i = 0; i < n; ++i) {
+        cout << "\nEnter details for employee " << i + 1 << ":\n";
+        cin.ignore(); // Clear the input buffer
+        cout << "Enter employee name: ";
+        getline(cin, employees[i].name);
+
+        cout << "Enter employee ID: ";
+        cin >> employees[i].employeeID;
+        cin.ignore();
+
+        cout << "Enter employee department: ";
+        getline(cin, employees[i].department);
+
+        cout << "Enter employee salary: ";
+        cin >> employees[i].salary;
+    }
+
+    // Display the details for all employees
+    cout << "\nEmployee Details:\n";
+    for (int i = 0; i < n; ++i) {
+        cout << "\nEmployee " << i + 1 << ":\n";
+        cout << "Name: " << employees[i].name << endl;
+        cout << "Employee ID: " << employees[i].employeeID << endl;
+        cout << "Department: " << employees[i].department << endl;
+        cout << "Salary: " << employees[i].salary << endl;
+    }
+
+    return 0;
+}

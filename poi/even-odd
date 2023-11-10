@@ -1,0 +1,34 @@
+#include <iostream>
+using namespace std;
+
+void findSumOddEven(int* arr, int size, int& sumOdd, int& sumEven) {
+    sumOdd = 0;
+    sumEven = 0;
+
+    for (int i = 0; i < size; ++i) {
+        if (*(arr + i) % 2 == 0) {
+            sumEven += *(arr + i);
+        } else {
+            sumOdd += *(arr + i);
+        }
+    }
+}
+
+int main() {
+    const int ARRAY_SIZE = 5;
+    int array[ARRAY_SIZE];
+    int* ptr = array;
+
+    cout << "Enter " << ARRAY_SIZE << " numbers:\n";
+    for (int i = 0; i < ARRAY_SIZE; ++i) {
+        cin >> *(ptr + i);
+    }
+
+    int sumOfOdd = 0, sumOfEven = 0;
+    findSumOddEven(ptr, ARRAY_SIZE, sumOfOdd, sumOfEven);
+
+    cout << "\nSum of Odd numbers: " << sumOfOdd << endl;
+    cout << "Sum of Even numbers: " << sumOfEven << endl;
+
+    return 0;
+}

@@ -1,0 +1,119 @@
+#include <iostream>
+using namespace std;
+
+const int MAX_SIZE = 100;
+
+// Function to display the array
+void displayArray(int arr[], int size) {
+    for (int i = 0; i < size; ++i) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+}
+
+// Function to insert an element into an array
+void insertElement(int arr[], int& size, int index, int element) {
+    if (size >= MAX_SIZE) {
+        cout << "Array is full. Cannot insert element." << endl;
+        return;
+    }
+    if (index < 0 || index > size) {
+        cout << "Invalid index. Cannot insert element." << endl;
+        return;
+    }
+    for (int i = size; i > index; --i) {
+        arr[i] = arr[i - 1];
+    }
+    arr[index] = element;
+    size++;
+}
+
+// Function to remove an element from an array
+void removeElement(int arr[], int& size, int index) {
+    if (index < 0 || index >= size) {
+        cout << "Invalid index. Cannot remove element." << endl;
+        return;
+    }
+    for (int i = index; i < size - 1; ++i) {
+        arr[i] = arr[i + 1];
+    }
+    size--;
+}
+
+// Function to update an element in an array
+void updateElement(int arr[], int size, int index, int newValue) {
+    if (index < 0 || index >= size) {
+        cout << "Invalid index. Cannot update element." << endl;
+        return;
+    }
+    arr[index] = newValue;
+}
+
+// Function to merge two arrays
+void mergeArrays(int arr1[], int& size1, int arr2[], int size2) {
+    if (size1 + size2 > MAX_SIZE) {
+        cout << "Merging arrays exceeds maximum size." << endl;
+        return;
+    }
+    for (int i = 0; i < size2; ++i) {
+        arr1[size1 + i] = arr2[i];
+    }
+    size1 += size2;
+}
+
+int main() {
+    int size1, size2, index, element, newValue;
+    int arr1[MAX_SIZE], arr2[MAX_SIZE];
+
+    cout << "Enter the size of the first array: ";
+    cin >> size1;
+
+    cout << "Enter " << size1 << " elements for the first array: ";
+    for (int i = 0; i < size1; ++i) {
+        cin >> arr1[i];
+    }
+
+    cout << "Enter the size of the second array: ";
+    cin >> size2;
+
+    cout << "Enter " << size2 << " elements for the second array: ";
+    for (int i = 0; i < size2; ++i) {
+        cin >> arr2[i];
+    }
+
+    cout << "Arrays before operations:" << endl;
+    cout << "Array 1: ";
+    displayArray(arr1, size1);
+    cout << "Array 2: ";
+    displayArray(arr2, size2);
+
+    // Insert an element into the first array
+    cout << "Enter index to insert into the first array: ";
+    cin >> index;
+    cout << "Enter element to insert: ";
+    cin >> element;
+    insertElement(arr1, size1, index, element);
+
+    // Remove an element from the second array
+    cout << "Enter index to remove from the second array: ";
+    cin >> index;
+    removeElement(arr2, size2, index);
+
+    // Update an element in the first array
+    cout << "Enter index to update in the first array: ";
+    cin >> index;
+    cout << "Enter new value: ";
+    cin >> newValue;
+    updateElement(arr1, size1, index, newValue);
+
+    // Merge two arrays
+    mergeArrays(arr1, size1, arr2, size2);
+
+    cout << "Arrays after operations:" << endl;
+    cout << "Array 1: ";
+    displayArray(arr1, size1);
+    cout << "Array 2: ";
+    displayArray(arr2, size2);
+
+    return 0;
+}

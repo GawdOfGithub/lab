@@ -1,0 +1,36 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n;
+    cout << "Enter the number of integers: ";
+    cin >> n;
+
+    int* dynamicArray = new int[n]; // Dynamically allocating memory for an array of integers
+
+    // Input integers
+    cout << "Enter " << n << " integers:\n";
+    for (int i = 0; i < n; ++i) {
+        cin >> dynamicArray[i];
+    }
+
+    // Display integers and their addresses
+    cout << "\nIntegers and their addresses:\n";
+    for (int i = 0; i < n; ++i) {
+        cout << "Integer: " << dynamicArray[i] << " Address: " << &dynamicArray[i] << endl;
+    }
+
+    // Calculate the sum of integers
+    int sum = 0;
+    for (int i = 0; i < n; ++i) {
+        sum += dynamicArray[i];
+    }
+
+    // Display the sum
+    cout << "\nSum of all integers: " << sum << endl;
+
+    // Deallocate dynamically allocated memory
+    delete[] dynamicArray;
+
+    return 0;
+}

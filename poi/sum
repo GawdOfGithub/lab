@@ -1,0 +1,24 @@
+#include <iostream>
+using namespace std;
+
+void sumUsingPointers(int* num1, int* num2, int* sum) {
+    *sum = *num1 + *num2; // Dereference pointers and store the sum in the variable pointed to by 'sum'
+}
+
+int main() {
+    int number1, number2, result;
+    int* ptr1 = &number1; // Pointer to the first number
+    int* ptr2 = &number2; // Pointer to the second number
+    int* ptrResult = &result; // Pointer to store the sum
+
+    cout << "Enter the first number: ";
+    cin >> number1;
+    cout << "Enter the second number: ";
+    cin >> number2;
+
+    sumUsingPointers(ptr1, ptr2, ptrResult); // Call function to find the sum using pointers
+
+    cout << "The sum of " << *ptr1 << " and " << *ptr2 << " is: " << *ptrResult << endl;
+
+    return 0;
+}

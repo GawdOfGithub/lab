@@ -1,0 +1,36 @@
+#include <iostream>
+using namespace std;
+
+// Define a structure named 'Temperature'
+struct Temperature {
+    float fahrenheit;
+    float celsius;
+};
+
+// Function to convert Fahrenheit to Celsius
+float convertFahrenheitToCelsius(float fahrenheit) {
+    return (fahrenheit - 32.0) * 5.0 / 9.0;
+}
+
+int main() {
+    int n; // Number of temperature inputs
+    cout << "Enter the number of temperatures to convert: ";
+    cin >> n;
+
+    Temperature temp[n]; // Array of 'Temperature' structures to store input and converted temperatures
+
+    // Input Fahrenheit temperatures and convert to Celsius
+    for (int i = 0; i < n; ++i) {
+        cout << "Enter temperature in Fahrenheit " << i + 1 << ": ";
+        cin >> temp[i].fahrenheit;
+        temp[i].celsius = convertFahrenheitToCelsius(temp[i].fahrenheit);
+    }
+
+    // Display the converted temperatures in Celsius
+    cout << "\nTemperatures in Celsius:\n";
+    for (int i = 0; i < n; ++i) {
+        cout << "Temperature " << i + 1 << " in Celsius: " << temp[i].celsius << "°C" << endl;
+    }
+
+    return 0;
+}

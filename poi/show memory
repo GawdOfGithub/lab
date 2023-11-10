@@ -1,0 +1,23 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    const int ARRAY_SIZE = 5; // Define the size of the array
+
+    int values[ARRAY_SIZE]; // Array to store the values
+    int* ptr = values; // Pointer to the array
+
+    // Accept values into the array using pointer
+    cout << "Enter " << ARRAY_SIZE << " values:\n";
+    for (int i = 0; i < ARRAY_SIZE; ++i) {
+        cin >> *(ptr + i); // Input values using pointer arithmetic
+    }
+
+    // Display values and their addresses using pointer
+    cout << "\nValues entered and their addresses:\n";
+    for (int i = 0; i < ARRAY_SIZE; ++i) {
+        cout << "Value: " << *(ptr + i) << " Address: " << (ptr + i) << endl;
+    }
+
+    return 0;
+}

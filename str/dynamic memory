@@ -1,0 +1,38 @@
+#include <iostream>
+using namespace std;
+
+// Define a structure named 'Person' that dynamically allocates memory for name
+struct Person {
+    char *name;
+    int age;
+};
+
+int main() {
+    // Create an instance of the 'Person' structure
+    Person person1;
+
+    // Allocate memory for the name using dynamic memory allocation
+    person1.name = new char[50];
+
+    if (person1.name == nullptr) {
+        cout << "Memory allocation failed. Exiting...";
+        return 1;
+    }
+
+    // Input name and age for the person
+    cout << "Enter name: ";
+    cin.getline(person1.name, 50);
+
+    cout << "Enter age: ";
+    cin >> person1.age;
+
+    // Display the details of the person
+    cout << "\nPerson's Details:\n";
+    cout << "Name: " << person1.name << endl;
+    cout << "Age: " << person1.age << endl;
+
+    // Free the dynamically allocated memory
+    delete[] person1.name;
+
+    return 0;
+}

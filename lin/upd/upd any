@@ -1,0 +1,42 @@
+#include <iostream>
+using namespace std;
+
+struct Node {
+    int data;
+    Node* next;
+};
+
+// Function to update data at a specified position in a linked list
+void updateAtPosition(Node* head, int position, int newData) {
+    Node* temp = head;
+    for (int i = 0; i < position && temp != nullptr; ++i) {
+        temp = temp->next;
+    }
+
+    if (temp != nullptr) {
+        temp->data = newData;
+    } else {
+        cout << "Invalid position. Data not updated." << endl;
+    }
+}
+
+int main() {
+    Node* head = nullptr;
+
+    // Example: Updating data at a specific position
+    insertAtPosition(head, 10, 0);
+    insertAtPosition(head, 20, 1);
+    insertAtPosition(head, 30, 2);
+
+    // Display the linked list before updating
+    cout << "Linked list before updating: ";
+    printList(head);
+
+    // Updating data at a specific position
+    updateAtPosition(head, 1, 25); // Update data at position 1 to 25
+
+    // Display the linked list after updating at a specific position
+    cout << "Linked list after updating: ";
+    printList(head);
+    return 0;
+}

@@ -1,0 +1,78 @@
+#include <iostream>
+using namespace std;
+
+#define MAX_SIZE 100
+
+class Queue {
+    int front, rear;
+    int queueArray[MAX_SIZE];
+
+public:
+    Queue() {
+        front = -1;
+        rear = -1;
+    }
+
+    bool isEmpty() {
+        return (front == -1 && rear == -1);
+    }
+
+    bool isFull() {
+        return (rear == MAX_SIZE - 1);
+    }
+
+    void enqueue(int element) {
+        if (isFull()) {
+            cout << "Queue is full. Cannot enqueue element." << endl;
+        } else if (isEmpty()) {
+            front = rear = 0;
+            queueArray[rear] = element;
+        } else {
+            queueArray[++rear] = element;
+        }
+        cout << element << " enqueued into the queue." << endl;
+    }
+
+    void dequeue() {
+        if (isEmpty()) {
+            cout << "Queue is empty. Cannot dequeue element." << endl;
+        } else if (front == rear) {
+            cout << queueArray[front] << " dequeued from the queue." << endl;
+            front = rear = -1;
+        } else {
+            cout << queueArray[front] << " dequeued from the queue." << endl;
+            ++front;
+        }
+    }
+
+    void display() {
+        if (isEmpty()) {
+            cout << "Queue is empty." << endl;
+        } else {
+            cout << "Elements in the queue: ";
+            for (int i = front; i <= rear; ++i) {
+                cout << queueArray[i] << " ";
+            }
+            cout << endl;
+        }
+    }
+};
+
+int main() {
+    Queue queue;
+
+    queue.enqueue(10);
+    queue.enqueue(20);
+    queue.enqueue(30);
+
+    queue.display();
+
+    queue.dequeue();
+    queue.display();
+
+    queue.dequeue();
+    queue.dequeue();
+    queue.display();
+
+    return 0;
+}
